@@ -10,11 +10,16 @@ class dataloader:
     Description: Dataloader for high speed collision avoidance
     Data structure: (image, next_image, imu, next_imu, dir_vector, next_dir_vector, action)
     '''
-    def __init__(self, batch_size=32, csv_path='data/train_ds.csv'):
+    def __init__(self, batch_size=32, csv_path='train_ds.csv'):
         
         self.batch_size = batch_size
         self.data_list = pd.read_csv(csv_path, header=None)
+         
         self.filenames = self.data_list[0].tolist()
+        # for item in :
+        #     item = 'data/' + item
+        #     self.filenames.append(item)
+        
 
     def length(self):
         
@@ -29,6 +34,7 @@ class dataloader:
             data =  pickle.load(f)
 
         image = data['image']
+        
         return image
 
     def get_next_image(self, filename):
