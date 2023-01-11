@@ -107,7 +107,7 @@ class dataloader:
 
         action = tf.py_function(self.get_action, inp=[filename], Tout=tf.float32)
 
-        return image, next_image, imu, next_imu, dir_vector, next_dir_vector, action
+        return (image, imu, dir_vector), action, (next_image, next_imu, next_dir_vector)
 
     def get_batched_dataset(self):
 
