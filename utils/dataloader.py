@@ -18,8 +18,8 @@ class dataloader:
 
     def length(self):
         
-        print(f"Batch size: {self.batch_size}")
-        print(f"Steps per epoch: {len(self.filenames)//self.batch_size}")
+        # print(f"Batch size: {self.batch_size}")
+        # print(f"Steps per epoch: {len(self.filenames)//self.batch_size}")
         return len(self.filenames)//self.batch_size
 
     def get_image(self, filename):

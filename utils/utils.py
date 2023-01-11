@@ -30,3 +30,12 @@ def compute_loss(model, x):
   logqz_x = log_normal_pdf(z, mean, logvar)
   return -tf.reduce_mean(logpx_z + logpz - logqz_x)
 
+@tf.function
+def train_step(model, x, optimizer, metric_fn):
+
+  with tf.GradientTape() as tape:
+    loss = compute_loss(model, x)
+  
+  gradients = tape.gradient(loss, model.trainable_variables)
+  optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+  metric_fn(loss)
