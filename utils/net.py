@@ -205,12 +205,12 @@ class img_decoder(tf.keras.Model):
             ])
 
     def call(self, x):
+        
         s_image, a, c = x
 
         s_image = tf.transpose(s_image, perm=[0,2,3,1])
         
         concat_a_c = self.reshape_a_and_c(tf.concat([a,c],axis=-1))
-        print(s_image.shape, a.shape, c.shape, concat_a_c.shape)
-        print(tf.concat([s_image, concat_a_c],axis=-1).shape)
+      
         return self.cnn(tf.concat([s_image, concat_a_c],axis=-1))
         
